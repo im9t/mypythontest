@@ -12,11 +12,14 @@ import urllib.request,urllib.error
 
 def main():
     baseurl = "https://movie.douban.com/top250?start="
-    htmlpage = askURL(baseurl)
-#    print(type(htmlpage))
-    tdata = getData(htmlpage)
-    saveDatasql(tdata,"./move520.db")
+    for i in range(1,10):
+        speurl = baseurl + str(i*25)
 
+        htmlpage = askURL(baseurl)
+#    print(type(htmlpage))
+        tdata = getData(htmlpage)
+        saveDatasql(tdata,"./move520.db")
+    print("work Done!")
 findLink = re.compile(r'<a href="(.*)">')
 findImg = re.compile(r'<img.*src="(.*?)"',re.S)
 findTitle = re.compile(r'<span class="title">(.*)</span>')
